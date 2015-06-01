@@ -11,6 +11,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.SensorModes;
@@ -19,7 +20,7 @@ import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
-public class TetrixGo {
+public class LightSensorTest {
 
 	static final Port LIGHT_SENSOR_PORT = SensorPort.S3;
 	static final Port ULTRASONIC_SENSOR_PORT = SensorPort.S2;
@@ -37,6 +38,9 @@ public class TetrixGo {
 	static SensorModes ultrasonicSensor;
 	static SampleProvider distance;
 	
+	static SensorModes lightSensor;
+	static SampleProvider red;
+	
 	static float[] sample;
 	
 	static final int MICROSECLOW_DEFAULT = 750;
@@ -44,26 +48,29 @@ public class TetrixGo {
 	static final int TRAVELRANGE_DEFAULT = 200;
 	
 	public static void main(String[] args) {
+		lightSensor = new EV3ColorSensor(LIGHT_SENSOR_PORT);
+		red = lightSensor.getMode("Red");
+		sample = new float[red.sampleSize()];
 		initializeControllers();
 		initializeMotors();
-		initializeUltrasonicSensor();
 		RegulatedMotor m = new EV3LargeRegulatedMotor(MotorPort.A);
-		setPower(50);
+		motor1.setPower(10);
+		motor2.setPower(10);
 		moveForward();
-		m.forward();
-		while (distanceRead() >= .3) {
-			Delay.msDelay(5);
+		while (true) {
+			red.fetchSample(sample, 0);
+			if (sample[0] <= .2) {
+				m.forward();
+				motor1.setPower(11);
+				motor2.setPower(9);
+			} else {
+				m.stop();
+				motor1.setPower(9);
+				motor2.setPower(11);
+			}
 		}
-		stop();
-		Delay.msDelay(100);
-		moveBackward();
-		m.backward();
-		while (distanceRead() <=.7) {
-			Delay.msDelay(5);
-		}
-		m.stop();
-		stop();
 	}
+	
 	public static void turn(boolean direction){
 		if(LEFT==direction){
 			motor1.forward();
