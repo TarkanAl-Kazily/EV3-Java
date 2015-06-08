@@ -1,3 +1,9 @@
+/*
+ * This program operates a large EV3 motor when a touch sensor is pressed.
+ * Make sure that the motor is connected to motor port A and that the
+ * touch sensor is connected to sensor port 1.
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.ev3.LocalEV3;

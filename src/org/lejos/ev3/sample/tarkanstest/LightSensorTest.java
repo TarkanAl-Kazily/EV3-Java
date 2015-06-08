@@ -1,3 +1,9 @@
+/*
+ * Runs a large EV3 Motor based on the light sensor. The light sensor needs to be
+ * connected to sensor port 3, and the motor must be connected to motor port A.
+ * It will activate the motor based on the brightness of the color sensed.
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.BrickFinder;
@@ -52,21 +58,13 @@ public class LightSensorTest {
 		red = lightSensor.getMode("Red");
 		sample = new float[red.sampleSize()];
 		initializeControllers();
-		initializeMotors();
 		RegulatedMotor m = new EV3LargeRegulatedMotor(MotorPort.A);
-		motor1.setPower(10);
-		motor2.setPower(10);
-		moveForward();
 		while (true) {
 			red.fetchSample(sample, 0);
 			if (sample[0] <= .2) {
 				m.forward();
-				motor1.setPower(11);
-				motor2.setPower(9);
 			} else {
 				m.stop();
-				motor1.setPower(9);
-				motor2.setPower(11);
 			}
 		}
 	}

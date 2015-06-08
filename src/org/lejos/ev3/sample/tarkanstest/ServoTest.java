@@ -1,3 +1,10 @@
+/*
+ * Moves servo 1 to a number of different positions, and prints out its angle
+ * each time. Make sure that the servo controller is connected to the motor
+ * controller, which needs to be connected to sensor port 1. It would be best
+ * for the servo to not be part of any arm.
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.BrickFinder;

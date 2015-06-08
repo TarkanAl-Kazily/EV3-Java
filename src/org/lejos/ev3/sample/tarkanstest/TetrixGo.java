@@ -1,3 +1,10 @@
+/*
+ * This program uses an ultrasonic sensor pointing forward (the side with the two
+ * tetrix motors) to move forward until it is 30 cm away from an object, then
+ * back up until it is 70 cm away. Make sure that the ultrasonic sensor is connected
+ * to sensor port 2, and that the motor controller is connected to sensor port 1.
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.BrickFinder;

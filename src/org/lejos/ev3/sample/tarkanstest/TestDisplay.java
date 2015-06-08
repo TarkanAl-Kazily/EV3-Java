@@ -1,3 +1,7 @@
+/*
+ * This program prints to the screen of the lego brick "Hello World"
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.BrickFinder;

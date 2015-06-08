@@ -1,3 +1,11 @@
+/*
+ * Using the arm, this program moves the robot forward a short distance,
+ * grabs an object, and lifts it. Make sure that the grabbing servo is 
+ * connected to servo channel 2, and that the lifting servo is connected to
+ * channel 1. The controllers should be connected to each other to sensor port
+ * 1.
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.device.tetrix.TetrixControllerFactory;

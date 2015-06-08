@@ -1,3 +1,8 @@
+/*
+ * Prints out the angle of the gyroscope to the screen. The gyro must be
+ * connected to sensor port 2.
+ */
+
 package org.lejos.ev3.sample.tarkanstest;
 
 import lejos.hardware.BrickFinder;
