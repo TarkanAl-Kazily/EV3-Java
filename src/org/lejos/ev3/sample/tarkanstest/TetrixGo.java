@@ -119,7 +119,7 @@ public class TetrixGo {
 	}
 	
 	public static void setPower(int power) {
-		motor1.setPower(power-10);
+		motor1.setPower(power);
 		motor2.setPower(power);
 	}
 
